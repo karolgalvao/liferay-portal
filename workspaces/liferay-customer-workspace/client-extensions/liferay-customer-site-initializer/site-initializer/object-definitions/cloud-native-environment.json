@@ -7,6 +7,31 @@
 		"en_US": "Cloud Native Environment"
 	},
 	"name": "CloudNativeEnvironment",
+	"objectActions": [
+		{
+			"active": true,
+			"externalReferenceCode": "C_CN_ENVIRONMENT_ADD",
+			"label": {
+				"en_US": "Cloud Native Environment Add"
+			},
+			"name": "cloudNativeEnvironmentAdd",
+			"objectActionExecutorKey": "function#liferay-customer-etc-spring-boot-object-action-cloud-native-environment",
+			"objectActionTriggerKey": "onAfterAdd",
+			"parameters": {
+			}
+		},
+		{
+			"active": true,
+			"externalReferenceCode": "C_CN_ENVIRONMENT_DELETE",
+			"label": {
+				"en_US": "Cloud Native Environment Delete"
+			},
+			"name": "cloudNativeEnvironmentDelete",
+			"objectActionExecutorKey": "function#liferay-customer-etc-spring-boot-object-action-cloud-native-environment",
+			"objectActionTriggerKey": "onAfterDelete",
+			"parameters": {}
+		}
+	],
 	"objectFields": [
 		{
 			"DBType": "String",
@@ -39,6 +64,17 @@
 				"en_US": "Non-Production Subscription Uuid"
 			},
 			"name": "nonProductionSubscriptionUuid",
+			"required": false
+		},
+		{
+			"DBType": "String",
+			"externalReferenceCode": "C_CN_ENVIRONMENT_oktaApplicationId",
+			"indexed": true,
+			"indexedAsKeyword": true,
+			"label": {
+				"en_US": "Okta Application ID"
+			},
+			"name": "oktaApplicationId",
 			"required": false
 		},
 		{

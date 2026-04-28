@@ -13,6 +13,7 @@ liferay-customer-etc-spring-boot-oahs:
         -   c_accountsubscription.everything.read
         -   c_businessevent.everything
         -   c_businesseventversion.everything
+        -   c_cloudnativeenvironment.everything
         -   c_koroneikiaccount.everything.read
         -   c_notificationsubscription.everything
         -   c_notificationtarget.everything
@@ -31,4 +32,9 @@ liferay-customer-etc-spring-boot-object-action-business-event:
     name: Liferay Customer Etc Spring Boot Object Action Business Event
     oAuth2ApplicationExternalReferenceCode: liferay-customer-etc-spring-boot-oaua
     resourcePath: /object/action/business/event
+    type: objectAction
+liferay-customer-etc-spring-boot-object-action-cloud-native-environment:
+    name: Liferay Customer Etc Spring Boot Object Action Cloud Native Environment
+    oAuth2ApplicationExternalReferenceCode: liferay-customer-etc-spring-boot-oaua
+    resourcePath: /object/action/cloud-native-environment
     type: objectAction
