@@ -5,6 +5,8 @@
 
 package com.liferay.customer.service;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -46,8 +48,7 @@ public class OktaServiceImpl implements OktaService {
 			return;
 		}
 
-		_getWebClient(
-		).post(
+		_webClient.post(
 		).uri(
 			"/api/v1/apps/" + oktaApplicationId + "/users"
 		).bodyValue(
@@ -65,8 +66,7 @@ public class OktaServiceImpl implements OktaService {
 	public String createApplication(String accountKey, String applicationName)
 		throws Exception {
 
-		String responseBody = _getWebClient(
-		).post(
+		String responseBody = _webClient.post(
 		).uri(
 			"/api/v1/apps"
 		).bodyValue(
@@ -102,8 +102,7 @@ public class OktaServiceImpl implements OktaService {
 	public void deactivateApplication(String oktaApplicationId)
 		throws Exception {
 
-		_getWebClient(
-		).post(
+		_webClient.post(
 		).uri(
 			"/api/v1/apps/" + oktaApplicationId + "/lifecycle/deactivate"
 		).retrieve(
@@ -129,8 +128,7 @@ public class OktaServiceImpl implements OktaService {
 			return;
 		}
 
-		_getWebClient(
-		).method(
+		_webClient.method(
 			HttpMethod.DELETE
 		).uri(
 			"/api/v1/apps/" + oktaApplicationId + "/users/" + oktaUserId
@@ -139,8 +137,9 @@ public class OktaServiceImpl implements OktaService {
 		).block();
 	}
 
-	private WebClient _getWebClient() {
-		return WebClient.builder(
+	@PostConstruct
+	private void _initWebClient() {
+		_webClient = WebClient.builder(
 		).baseUrl(
 			_oktaBaseUrl
 		).defaultHeader(
@@ -160,8 +159,7 @@ public class OktaServiceImpl implements OktaService {
 		).build(
 		).toUriString();
 
-		String responseBody = _getWebClient(
-		).get(
+		String responseBody = _webClient.get(
 		).uri(
 			searchQuery
 		).retrieve(
@@ -187,5 +185,7 @@ public class OktaServiceImpl implements OktaService {
 
 	@Value("${liferay.customer.okta.base.url}")
 	private String _oktaBaseUrl;
+
+	private WebClient _webClient;
 
 }
